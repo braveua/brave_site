@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "root",
 ]
 
 MIDDLEWARE = [
@@ -84,9 +85,15 @@ DATABASES = {
         "USER": os.environ.get("ORA_USER"),
         "PASSWORD": os.environ.get("ORA_PASSWORD")
     },
+    "ORA_CR": {
+        "ENGINE": "django.db.backends.oracle",
+        "NAME": os.environ.get("ORA_NAME"),
+        "USER": os.environ.get("ORA_CR_USER"),
+        "PASSWORD": os.environ.get("ORA_CR_PASSWORD")
+    },
 }
-print(DATABASES)
 
+DATABASE_ROUTERS = ['root.routers.RootRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -123,6 +130,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+STATICFILES_DIRS = [BASE_DIR / 'static/',]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

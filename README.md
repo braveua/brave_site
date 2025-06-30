@@ -59,7 +59,23 @@ DATABASES = {
         "USER": os.environ.get("ORA_USER"),
         "PASSWORD": os.environ.get("ORA_PASSWORD")
     },
+        "ORA_CR": {
+        "ENGINE": "django.db.backends.oracle",
+        "NAME": os.environ.get("ORA_NAME"),
+        "USER": os.environ.get("ORA_CR_USER"),
+        "PASSWORD": os.environ.get("ORA_CR_PASSWORD")
+    },
+
+# добавляем свое приложение "root"
+INSTALLED_APPS = [
+    "старые приложения",
+    "root",
+]
+
+
 }
+DATABASE_ROUTERS = ['routers.RootRouter']
+#DATABASE_ROUTERS = ['app.routers.RootRouter']
 
 #Доступность сайта
 ALLOWED_HOSTS = ["*"]
@@ -67,4 +83,31 @@ ALLOWED_HOSTS = ["*"]
 #путь к static
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static/',]
+```
+
+
+## Создаем роутер для БД
+braveit/router.py
+```python
+class RootRouter:
+    def db_for_read(self, model, **hints):
+        if model._meta.app_label in ('nbu'):
+            return 'ORA_CR'
+        return None
+
+```
+
+## Добавляем пути приложений в /braveit/urls.py
+```python
+from django.contrib import admin
+from django.urls import path, re_path, include
+from django.views.generic import RedirectView
+
+
+urlpatterns = [
+    path('', include('root.urls'), name='index'),
+    path('admin/', admin.site.urls, name='admin'),
+    # re_path('favicon.ico',RedirectView.as_view(url='/static/favicon.ico')),
+]
+
 ```
