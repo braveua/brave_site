@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+{% comment %} <html data-theme="cupcake"> {% endcomment %}
+<html lang="en" data-theme="dracula">
+{% comment %} <html lang="en" data-theme="dark"> {% endcomment %}
+{% comment %} <html lang="en" data-theme="light"> {% endcomment %}
+{% comment %} <html lang="en" data-theme="forest"> {% endcomment %}
+{% comment %} <html lang="en" data-theme="lofi"> {% endcomment %}
+{% comment %} <html lang="en" data-theme="synthwave"> {% endcomment %}
+{% comment %} <html lang="en" data-theme="retro"> {% endcomment %}
+{% comment %} <html lang="en" data-theme="cyberpunk"> {% endcomment %}
+<head>    
+  <title>{{ title}}</title>
+  {% comment %} <link href="https://cdn.jsdelivr.net/npm/daisyui@latest/dist/full.css" rel="stylesheet" type="text/css" /> {% endcomment %}
+  <link href="/static/css/full.css" rel="stylesheet" type="text/css" />
+  {% comment %} <script src="https://cdn.tailwindcss.com"></script> {% endcomment %}
+  <script src="/static/css/tailwind_3.4.16.js "></script>
+{% include "root/include/header.html" %}
+</head>
+<body>
+{% include "root/include/nav.html" %}
+{% block body %}body block base.html{% endblock body %}
+{% include "root/include/footer.html" %}
+</body>
+</html>

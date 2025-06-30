@@ -1,0 +1,41 @@
+{% extends "root/base.html" %}
+{% block body %}
+    <p class="text-center">Currency</p>
+    {% if curr %}
+            <table class="table table-zebra w-full">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Код</th>
+                    <th>Название</th>
+                </tr>
+            </thead>
+            <tbody>
+    {% for i in curr %}            
+                {% comment %} <p>{{ i.id}}</p>
+                <tr>
+                    {% if i.id == 840 %} {% endcomment %}
+                    <td><a href="{% url 'root:currency_rates' i.id %}">{{ i.id }}</td>
+                    <td>{{ i.id }}</td>
+                    <td>{{ i.sname }}</td>
+                    <td>{{ i.fname }}</td>
+                    {% comment %} {% endif %} {% endcomment %}
+                </tr>            
+    {% endfor %}
+            </tbody>
+            </table>
+    {% endif %}    
+</div>
+{% endblock body %}
+
+
+
+<ul>
+  {% for c in curr %}
+    <li>
+      <a href="{% url 'root:currency_rates' c.id %}">
+        {{ c.fname }} ({{ c.sname }})
+      </a>
+    </li>
+  {% endfor %}
+</ul>

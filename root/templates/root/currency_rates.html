@@ -1,0 +1,22 @@
+<h1>{{ title }}</h1>
+<p>Курсы валюты: {{ currency.fname }} ({{ currency.sname }}) за период {{ start_date }} {{ end_date }}</p>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>Курс</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for rate in rates %}
+      <tr>
+        <td>{{ rate.fromdate }}</td>
+        <td>{{ rate.rate }}</td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="2">Нет данных за выбранный период.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
