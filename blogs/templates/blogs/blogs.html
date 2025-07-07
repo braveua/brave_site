@@ -1,0 +1,23 @@
+{% extends "blogs/base.html" %}
+{% block body %}
+
+{{ current_time }}<br>
+
+{% if username != "Guest" %}
+    <h1>Welcome, {{ username }}!</h1>
+{% else %}
+    <h1>Welcome to our blog!</h1>
+{% endif %}
+
+<div class="container">
+    <h2>Blogs</h2>
+    <p class="text-center">This is a simple blog application.</p>
+    
+    {% if username == "Guest" %}
+        <p class="text-center">Please <a href="{% url 'blogs:login' %}">log in</a> to see more content.</p>
+    {% else %}
+        <p class="text-center">You are logged in as {{ username }}.</p>
+        <!-- Add your blog content here -->
+    {% endif %}
+</div>
+{% endblock body %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" data-theme="aqua">
+<head>    
+  <title>{{ title}}</title>
+  <link href="/static/css/full.css" rel="stylesheet" type="text/css" />
+  <script src="/static/css/tailwind_3.4.16.js "></script>
+{% include "blogs/include/header.html" %}
+</head>
+<body>
+{% include "blogs/include/nav.html" %}
+{% block body %}body block base.html{% endblock body %}
+{% include "blogs/include/footer.html" %}
+</body>
+</html>
