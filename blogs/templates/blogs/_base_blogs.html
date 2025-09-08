@@ -5,11 +5,11 @@
   <title>{{ title}}</title>
   <link href="/static/css/full.css" rel="stylesheet" type="text/css" />
   <script src="/static/css/tailwind_3.4.16.js "></script>
-{% include "blogs/include/header.html" %}
+{% comment %}{% include "blogs/include/header.html" %}{% endcomment %}
 </head>
 <body>
-{% include "blogs/include/nav.html" %}
-{% block body %}body block base.html{% endblock body %}
-{% comment %} {% include "blogs/include/footer.html" %} {% endcomment %}
+{% include "blogs/include/nav2.html" %}
+{% block body %}body block base{% endblock body %}
+{% include "blogs/include/footer.html" %}
 </body>
 </html>
