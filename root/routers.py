@@ -23,3 +23,8 @@ class RootRouter:
     #     # if app_label in ('api',):
     #     #     return db == 'django'
     #     return None
+    def allow_migrate(self, db, app_label, model_name=None, **hints):
+        if app_label == 'blogs':
+            return db == 'default'
+        # Добавьте условия для других приложений, если нужно
+        return None

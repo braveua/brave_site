@@ -3,6 +3,12 @@
     <!-- <a href="/blogs/" class="text-lg font-bold">Blogs</a> -->
     <a href="/blogs/" class="text-lg font-bold"><img src="/static/blogs/lj-logo.svg" alt="Blogs" width="250" height="300" /></a>
   </div>
+{% if username == "Guest" %}
+  <div class="flex grow justify-end px-2">
+    <div class="flex items-stretch">
+      <a class="btn btn-ghost rounded-field" href="/blogs/login/">Войти</a>
+      <a class="btn btn-info rounded-field" href="/blogs/register/">Создать аккаунт</a>
+{% else %}
   <div class="flex grow justify-end px-2">
     <div class="flex items-stretch">
       <a class="btn btn-ghost rounded-field" href="/blogs/">Button</a>
@@ -17,6 +23,7 @@
           </li>
         </ul>
       </div>
+{% endif %}
     </div>
   </div>
 </div>

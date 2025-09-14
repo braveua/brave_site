@@ -5,6 +5,19 @@ from django.contrib.auth.forms import AuthenticationForm
 # from models import User
 # from forms import UserLoginForm
 from .forms import LoginForm, ProfileForm
+from django.contrib.auth.forms import UserCreationForm
+from blogs.models import Profile
+from django.conf import settings
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            return redirect('blogs:login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'blogs/register.html', {'form': form})
 
 
 from datetime import datetime, timedelta
@@ -44,14 +57,14 @@ def login_view(request):
     # return render(request, "blogs/login.html", {"form": form})
     return render(request, "blogs/login.html", {"form": form})
 
+
 def profile_edit(request):
     profile = request.user.profile
     if request.method == 'POST':
-        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        form = ProfileForm(request.POST, request.FILES, instance=profile, user=request.user)
         if form.is_valid():
             form.save()
-            return redirect('profile')
+            return redirect('/blogs/profile_edit')
     else:
-        form = ProfileForm(instance=profile)
+        form = ProfileForm(instance=profile, user=request.user)
     return render(request, 'blogs/profile_edit.html', {'form': form})
-
